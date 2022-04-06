@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Home from "./components/Home/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Countries from "./components/Countries/Countries";
+import Weather from "./components/Weather/Weather";
 
 function App() {
+  // const [weather, setWeather] = useState([]);
+  // const [error, setError] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+
+        <Route path="/countries/:searchText" element={<Countries />}></Route>
+        <Route path="weather/:capital" element={<Weather />}></Route>
+        <Route path="/error" element={<div>404</div>}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
