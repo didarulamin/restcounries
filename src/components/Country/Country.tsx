@@ -30,7 +30,7 @@ export default function CountryCard({ item }: Props) {
             {item?.capital[0]}
           </Typography>
           <Typography variant="body2" component="div">
-            <Typography paragraph>Population :{item.population}</Typography>
+            <Typography paragraph>Population :{item?.population}</Typography>
             <Typography paragraph> Latitude : {item?.latlng[0]}</Typography>
             <Typography paragraph> Longitude : {item?.latlng[1]}</Typography>
           </Typography>

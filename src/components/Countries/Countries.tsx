@@ -19,7 +19,6 @@ const Countries = () => {
     fetch(`https://restcountries.com/v3.1/name/${searchText}`)
       .then((response) => response.json())
       .then((res) => {
-        console.log(res);
         setData(res);
       })
       .catch((error) => {
