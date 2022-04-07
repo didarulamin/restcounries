@@ -28,7 +28,7 @@ export default function Home() {
             onChange={(e) => setName(e.target.value)}
           />
           <Button
-            data-testid="btn-search"
+            data-testid="search-button"
             disabled={name.length === 0}
             sx={{ mt: 5, width: 500, mx: "auto" }}
             variant="contained"

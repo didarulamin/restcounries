@@ -46,7 +46,7 @@ export default function Weather() {
               alignItems: "center",
             }}
           >
-            <h1>Weather of {capital}</h1>
+            <h1 data-testid="weather-capital">Weather of {capital}</h1>
             <p>Weather icon :</p>
             <img src={weather?.current?.weather_icons[0]} alt="" />
             <p>Temperature : {weather?.current?.temperature}</p>

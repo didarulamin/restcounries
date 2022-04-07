@@ -26,9 +26,7 @@ export default function CountryCard({ item }: Props) {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {item?.capital[0]}
-          </Typography>
+          <h1 data-testid="capital-name">{item?.capital[0]}</h1>
           <Typography variant="body2" component="div">
             <Typography paragraph>Population :{item?.population}</Typography>
             <Typography paragraph> Latitude : {item?.latlng[0]}</Typography>
@@ -37,7 +35,12 @@ export default function CountryCard({ item }: Props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={handleClick}>
+        <Button
+          data-testid="capital-weather-button"
+          size="small"
+          color="primary"
+          onClick={handleClick}
+        >
           Capital Weather
         </Button>
       </CardActions>
