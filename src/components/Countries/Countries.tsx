@@ -1,8 +1,6 @@
-import { Container, Grid, makeStyles } from "@mui/material";
-import { Box } from "@mui/system";
+import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import CountryCard from "../Country/Country";
 
 /* interface Props {
@@ -28,6 +26,7 @@ const Countries = () => {
 
   return (
     <Container sx={{ padding: "1rem" }}>
+      <h1 data-testid="header">List of countries</h1>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}

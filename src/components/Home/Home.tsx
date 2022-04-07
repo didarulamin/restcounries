@@ -11,10 +11,6 @@ export default function Home() {
   const [name, setName] = useState("");
   let navigate = useNavigate();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
-
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     navigate(`/countries/${name}`);
   };
@@ -24,13 +20,15 @@ export default function Home() {
       <Container>
         <Box sx={{ mt: 5, width: 500, mx: "auto" }}>
           <TextField
+            inputProps={{ "data-testid": "content-input" }}
             fullWidth
             label="Country"
             id="fullWidth"
             value={name}
-            onChange={handleChange}
+            onChange={(e) => setName(e.target.value)}
           />
           <Button
+            data-testid="btn-search"
             disabled={name.length === 0}
             sx={{ mt: 5, width: 500, mx: "auto" }}
             variant="contained"
