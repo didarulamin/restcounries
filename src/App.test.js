@@ -40,7 +40,7 @@ test("After input of text button should be enabled", () => {
   expect(button).toBeEnabled();
 });
 
-test("after search button click should navigate to Countries page and display country card and weather info", async () => {
+test("after search button click should navigate to Countries page and display country card and then weather info", async () => {
   render(<App />);
 
   const contentInput = screen.getByTestId("content-input");
@@ -57,6 +57,7 @@ test("after search button click should navigate to Countries page and display co
   await waitFor(() => {
     expect(screen.getByText("Dhaka")).toBeInTheDocument();
   });
+
   fireEvent.click(screen.getByTestId("capital-weather-button"));
   expect(screen.getByTestId("weather-capital")).toBeInTheDocument(
     "Weather of Dhaka"
