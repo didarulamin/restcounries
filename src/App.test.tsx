@@ -23,14 +23,14 @@ test("Initially button is disabled", () => {
 
 test("Initially input is undefined", () => {
   render(<App />);
-  const input = screen.getByTestId("content-input");
+  const input: HTMLInputElement = screen.getByTestId("content-input");
   expect(input.value).toBe("");
 });
 
 test("After input of text button should be enabled", () => {
   render(<App />);
 
-  const contentInput = screen.getByTestId("content-input");
+  const contentInput: HTMLInputElement = screen.getByTestId("content-input");
   fireEvent.change(contentInput, {
     target: { value: "new content" },
   });
@@ -43,7 +43,7 @@ test("After input of text button should be enabled", () => {
 test("after search button click should navigate to Countries page and display country card and then weather info", async () => {
   render(<App />);
 
-  const contentInput = screen.getByTestId("content-input");
+  const contentInput: HTMLInputElement = screen.getByTestId("content-input");
   fireEvent.change(contentInput, {
     target: { value: "Bangladesh" },
   });
@@ -53,13 +53,11 @@ test("after search button click should navigate to Countries page and display co
 
   fireEvent.click(button);
 
-  expect(screen.getByTestId("header")).toBeInTheDocument("List of countries");
+  expect(screen.getByText("List of countries")).toBeInTheDocument();
   await waitFor(() => {
     expect(screen.getByText("Dhaka")).toBeInTheDocument();
   });
 
   fireEvent.click(screen.getByTestId("capital-weather-button"));
-  expect(screen.getByTestId("weather-capital")).toBeInTheDocument(
-    "Weather of Dhaka"
-  );
+  expect(screen.getByText("Weather of Dhaka")).toBeInTheDocument();
 });
