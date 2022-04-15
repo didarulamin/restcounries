@@ -27,5 +27,4 @@ test("after search button click should navigate to Countries page and display co
   await waitFor(() => {
     expect(screen.getByText("Weather of Dhaka")).toBeInTheDocument();
   });
-  // expect(screen.getByText("Weather of Dhaka")).toBeInTheDocument();
 });
