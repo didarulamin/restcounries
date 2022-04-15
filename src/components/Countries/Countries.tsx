@@ -20,10 +20,11 @@ const Countries = () => {
         setData(res);
       })
       .catch((error) => {
-        alert("Network error. Try again");
+        // alert("Network error. Try again");
       });
   }, [searchText]);
 
+  console.log(data, "data");
   return (
     <Container sx={{ padding: "1rem" }}>
       <h1 data-testid="header">List of countries</h1>

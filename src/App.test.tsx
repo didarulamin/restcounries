@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import {
   render,
   screen,
@@ -61,3 +61,4 @@ test("after search button click should navigate to Countries page and display co
   fireEvent.click(screen.getByTestId("capital-weather-button"));
   expect(screen.getByText("Weather of Dhaka")).toBeInTheDocument();
 });
+ */

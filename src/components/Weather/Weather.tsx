@@ -10,18 +10,21 @@ export default function Weather() {
 
   useEffect(() => {
     fetch(
-      `http://api.weatherstack.com/current?access_key=726f4b436038e3f96b726a4fd3e3a0a2&query=${capital}`
+      `http://api.weatherstack.com/current?access_key=30835b6e912e03bb4773bff87f6eff5b&query=${capital}`
     )
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "weather");
         setWeather(data);
         if (data.success === false) {
-          alert("error. Check Api key");
+          alert(data.error.info);
         }
       })
       .catch((err) => {
         console.log(err);
+        alert(
+          "content must be served over HTTPS.This is limitation of api and this works find in local machine. Please install this app in local machine and check"
+        );
       });
   }, [capital]);
 

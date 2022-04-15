@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@types/material-ui": "^0.21.12"
+    "@types/material-ui": "^0.21.12",
+    "msw": "^0.39.2"
   }
 }
