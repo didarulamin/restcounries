@@ -1,12 +1,13 @@
 import { Container, Paper } from "@material-ui/core";
 import { Box } from "@mui/system";
-
+import CircularProgress from "@mui/material/CircularProgress";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function Weather() {
   let { capital } = useParams();
   const [weather, setWeather] = useState<any>();
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     fetch(
@@ -16,6 +17,7 @@ export default function Weather() {
       .then((data) => {
         console.log(data, "weather");
         setWeather(data);
+        setLoader(false);
         if (data.success === false) {
           alert(data.error.info);
         }
@@ -39,26 +41,41 @@ export default function Weather() {
           alignItems: "center",
         }}
       >
-        <Paper>
+        {loader ? (
           <Box
             sx={{
-              padding: "1rem",
               display: "flex",
-              flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <h1 data-testid="weather-capital">
-              Weather of {weather?.location?.name}
-            </h1>
-            <p>Weather icon :</p>
-            <img src={weather?.current?.weather_icons[0]} alt="weather-icon" />
-            <p>Temperature : {weather?.current?.temperature}</p>
-            <p>Wind Speed : {weather?.current?.wind_speed}</p>
-            <p>precip : {weather?.current?.precip}</p>
+            <CircularProgress />
           </Box>
-        </Paper>
+        ) : (
+          <Paper>
+            <Box
+              sx={{
+                padding: "1rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h1 data-testid="weather-capital">
+                Weather of {weather?.location?.name}
+              </h1>
+              <p>Weather icon :</p>
+              <img
+                src={weather?.current?.weather_icons[0]}
+                alt="weather-icon"
+              />
+              <p>Temperature : {weather?.current?.temperature}</p>
+              <p>Wind Speed : {weather?.current?.wind_speed}</p>
+              <p>precip : {weather?.current?.precip}</p>
+            </Box>
+          </Paper>
+        )}
       </Box>
     </Container>
   );
