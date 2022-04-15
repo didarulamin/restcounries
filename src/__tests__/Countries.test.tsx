@@ -253,8 +253,33 @@ test("gets the data", async () => {
   );
 
   const capitalOne = await waitFor(() => screen.findByText("Dhaka"));
+  const capitalOnePopulation = await waitFor(() =>
+    screen.findByText("Population : 164689383")
+  );
+  const capitalOneLatitude = await waitFor(() =>
+    screen.findByText("Latitude : 24")
+  );
+  const capitalOneLongitude = await waitFor(() =>
+    screen.findByText("Longitude : 90")
+  );
+
   const capitalTwo = await waitFor(() => screen.findByText("Beirut"));
+  const capitalTwoPopulation = await waitFor(() =>
+    screen.findByText("Population : 6825442")
+  );
+  const capitalTwoLatitude = await waitFor(() =>
+    screen.findByText("Latitude : 33.83333333")
+  );
+  const capitalTwoLongitude = await waitFor(() =>
+    screen.findByText("Longitude : 35.83333333")
+  );
 
   expect(capitalOne).toBeInTheDocument();
+  expect(capitalOnePopulation).toBeInTheDocument();
+  expect(capitalOneLatitude).toBeInTheDocument();
+  expect(capitalOneLongitude).toBeInTheDocument();
   expect(capitalTwo).toBeInTheDocument();
+  expect(capitalTwoPopulation).toBeInTheDocument();
+  expect(capitalTwoLatitude).toBeInTheDocument();
+  expect(capitalTwoLongitude).toBeInTheDocument();
 });
