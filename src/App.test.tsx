@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -17,5 +17,7 @@ test("after search button click should navigate to Countries page", async () => 
   expect(button).toBeEnabled();
 
   fireEvent.click(button);
-  expect(screen.getByText("List of countries")).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByRole("progressbar")).toBeInTheDocument();
+  });
 });
