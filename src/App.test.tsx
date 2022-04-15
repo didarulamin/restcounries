@@ -5,7 +5,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 import App from "./App";
 
-test("after search button click should navigate to Countries page and display country card and then weather info", async () => {
+test("after search button click should navigate to Countries page", async () => {
   render(<App />);
 
   const contentInput: HTMLInputElement = screen.getByTestId("content-input");
@@ -17,14 +17,5 @@ test("after search button click should navigate to Countries page and display co
   expect(button).toBeEnabled();
 
   fireEvent.click(button);
-
   expect(screen.getByText("List of countries")).toBeInTheDocument();
-  await waitFor(() => {
-    expect(screen.getByText("Dhaka")).toBeInTheDocument();
-  });
-
-  fireEvent.click(screen.getByTestId("capital-weather-button"));
-  await waitFor(() => {
-    expect(screen.getByText("Weather of Dhaka")).toBeInTheDocument();
-  });
 });
