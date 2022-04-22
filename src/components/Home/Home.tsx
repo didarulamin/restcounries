@@ -5,6 +5,12 @@ import { Container } from "@material-ui/core";
 import Button from "@mui/material/Button";
 
 import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
+
+/* interface Props {
+  setLight: React.Dispatch<React.SetStateAction<Boolean>>;
+  light: Boolean;
+} */
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -15,13 +21,43 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <Container>
-        <Box sx={{ mt: 5, width: 500, mx: "auto" }}>
+    <Container>
+      {/* <Button onClick={() => setLight(!light)}>Toggle Theme Mode</Button> */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+
+          flexDirection: "column",
+          // width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+
+            flexDirection: "column",
+          }}
+        >
+          <Typography
+            variant="h4"
+            component="div"
+            align="center"
+            sx={{
+              marginBottom: "1rem",
+            }}
+          >
+            Where is the World?
+          </Typography>
+
           <TextField
             inputProps={{ "data-testid": "content-input" }}
             fullWidth
-            label="Country"
+            label="Search for a country"
             id="fullWidth"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -37,7 +73,7 @@ export default function Home() {
             Search
           </Button>
         </Box>
-      </Container>
-    </div>
+      </Box>
+    </Container>
   );
 }

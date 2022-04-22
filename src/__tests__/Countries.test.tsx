@@ -239,9 +239,27 @@ const server = setupServer(
   )
 );
 
-beforeAll(() => server.listen());
+const originalError = console.error;
+beforeAll(() => {
+  console.error = (...args) => {
+    if (
+      /Warning: ReactDOM.render is no longer supported in React 18./.test(
+        args[0]
+      )
+    ) {
+      return;
+    }
+
+    originalError.call(console, ...args);
+  };
+  server.listen();
+});
+
 afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+afterAll(() => {
+  server.close();
+  console.error = originalError;
+});
 
 test("gets the data", async () => {
   render(

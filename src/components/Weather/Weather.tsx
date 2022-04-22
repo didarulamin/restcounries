@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import CircularProgress from "@mui/material/CircularProgress";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import WeatherBackground from "../../assets/Weather-Background.png";
 
 export default function Weather() {
   let { capital } = useParams();
@@ -15,7 +16,7 @@ export default function Weather() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "weather");
+        // console.log(data, "weather");
         setWeather(data);
         setLoader(false);
         if (data.success === false) {
@@ -31,52 +32,55 @@ export default function Weather() {
   }, [capital]);
 
   return (
-    <Container>
-      <Box
-        sx={{
-          padding: "1rem",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {loader ? (
+    <Box
+      sx={{
+        padding: "1rem",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        // width: "100vh",
+        height: "100vh",
+        backgroundImage: `url(${WeatherBackground})`,
+
+        backgroundPosition: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {loader ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100vh",
+            height: "100vh",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Paper>
           <Box
             sx={{
+              padding: "1rem",
               display: "flex",
+              flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <CircularProgress />
+            <h2 data-testid="weather-capital">
+              Weather of {weather?.location?.name}
+            </h2>
+
+            <img src={weather?.current?.weather_icons[0]} alt="weather-icon" />
+            <span>Temperature : {weather?.current?.temperature}</span>
+            <span>Wind Speed : {weather?.current?.wind_speed}</span>
+            <span>precip : {weather?.current?.precip}</span>
           </Box>
-        ) : (
-          <Paper>
-            <Box
-              sx={{
-                padding: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <h1 data-testid="weather-capital">
-                Weather of {weather?.location?.name}
-              </h1>
-              <p>Weather icon :</p>
-              <img
-                src={weather?.current?.weather_icons[0]}
-                alt="weather-icon"
-              />
-              <p>Temperature : {weather?.current?.temperature}</p>
-              <p>Wind Speed : {weather?.current?.wind_speed}</p>
-              <p>precip : {weather?.current?.precip}</p>
-            </Box>
-          </Paper>
-        )}
-      </Box>
-    </Container>
+        </Paper>
+      )}
+    </Box>
   );
 }
