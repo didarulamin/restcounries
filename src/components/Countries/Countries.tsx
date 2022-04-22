@@ -76,7 +76,13 @@ const Countries = () => {
             columns={{ xs: 12, sm: 12, md: 15 }}
           >
             {data?.map((item: {}, index: number) => (
-              <Grid item xs={12} sm={4} md={3} key={index}>
+              <Grid
+                item
+                xs={12}
+                sm={data.length === 1 ? 12 : 4}
+                md={data.length === 1 ? 15 : 3}
+                key={index}
+              >
                 <CountryCard item={item} key={index} />
               </Grid>
             ))}
